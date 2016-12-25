@@ -7,8 +7,9 @@ class SetRateWorker
   recurrence { hourly }
 
   def perform
-    rate = CBRateFinder.dollar
-    ExchangeRate.create(rate: rate, date: Time.now)
+    cb_rate = CBRateFinder.dollar
+    last_rate = ExchangeRate.last.rate
+    ExchangeRate.create(rate: cb_rate, date: Time.now) unless last_rate == cb_rate
     puts "Got a rate from CBR: #{rate}, DB ID: #{ExchangeRate.last.id}"
     Pusher.trigger('rate-updates', 'rate-updated', {
       latest_rate: rate
