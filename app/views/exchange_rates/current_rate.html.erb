@@ -1,3 +1,32 @@
 <div class="container">
-  <div class="current_rate"><%= @current.rate %></div>
+  <div class="current_rate" id="rate_show">
+    {{ message }}
+  </div>
 </div>
+
+<% content_for :after_js do -%>
+<script src="https://js.pusher.com/3.2/pusher.min.js"></script>
+<script type="text/javascript">
+
+
+var pusher = new Pusher('95c34856656772134139', {
+  cluster: 'eu',
+  encrypted: true
+});
+Pusher.logToConsole = true;
+var channel = pusher.subscribe('rate-updates');
+
+var rate_show = new Vue({
+  el: '#rate_show',
+  data: {
+    message: '<%= @current_rate %>'
+  }
+});
+
+channel.bind('rate-updated', function(data) {
+  rate_show.message = data.latest_rate;
+  console.log('rate updated to ' + data.latest_rate);
+});
+
+</script>
+<% end -%>
