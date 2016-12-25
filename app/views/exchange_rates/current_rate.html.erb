@@ -13,7 +13,6 @@ var pusher = new Pusher('95c34856656772134139', {
   cluster: 'eu',
   encrypted: true
 });
-Pusher.logToConsole = true;
 var channel = pusher.subscribe('rate-updates');
 
 var rate_show = new Vue({
