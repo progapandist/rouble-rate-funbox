@@ -10,6 +10,7 @@ gem 'redis'
 gem 'nokogiri'
 gem 'sidetiq'
 gem 'sidekiq'
+gem 'pusher'
 
 gem 'sass-rails'
 gem 'jquery-rails'

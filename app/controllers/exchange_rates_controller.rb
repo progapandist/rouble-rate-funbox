@@ -4,5 +4,6 @@ class ExchangeRatesController < ApplicationController
     last_rate = ExchangeRate.last.rate
     ExchangeRate.create(rate: cb_rate, date: Time.now) unless last_rate == cb_rate
     @current = ExchangeRate.order(:date).last
+    SetRateWorker.perform_async
   end
 end
