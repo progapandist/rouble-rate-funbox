@@ -6,5 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 ExchangeRate.destroy_all
-# ExchangeRate.create(rate: CBRateFinder.dollar, date: Time.now)
-ExchangeRate.create(rate: 65.45, date: Time.now)
+ExchangeRate.create(rate: CBRateFinder.dollar, date: Time.now.utc)

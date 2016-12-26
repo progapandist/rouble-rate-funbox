@@ -1,1 +1,6 @@
 @import "home";
+
+/* Hide Vue.js mustache in case of latency */
+[v-cloak] {
+  display: none;
+}

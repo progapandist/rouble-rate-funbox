@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="current_rate" id="rate_show">
+  <div v-cloak class="current_rate" id="rate_show">
     {{ message }}
   </div>
 </div>
@@ -18,7 +18,7 @@ var channel = pusher.subscribe('rate-updates');
 var rate_show = new Vue({
   el: '#rate_show',
   data: {
-    message: '<%= @current_rate %>'
+    message: '<%= @current_rate.rate %>'
   }
 });
 

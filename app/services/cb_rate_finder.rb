@@ -5,7 +5,7 @@ class CBRateFinder
   def self.dollar
     url = "http://cbr.ru/"
     parsed = Nokogiri::HTML(open(url))
-    found = parsed.search('#widget_exchange .w_data_wrap')
+    found = parsed.search('#widget_exchange .weak')
     rate_str = found.first.text.gsub(/[^0-9,]+/, '')
     rate_str.gsub(',', '.').to_f
   end

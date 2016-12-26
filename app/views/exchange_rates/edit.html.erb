@@ -1,0 +1,5 @@
+<%= simple_form_for @exchange_rate do |f| %>
+  <%= f.input :date, value: f.object.date %>
+  <%= f.input :rate %>
+  <%= f.submit "Submit Rate", class: "btn btn-primary" %>
+<% end %>
