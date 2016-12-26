@@ -3,9 +3,9 @@ class ExchangeRatesController < ApplicationController
 
   def index
     last_rate = ExchangeRate.last
-    if last_rate.date < Time.now
+    if last_rate.date < Time.current
       cb_rate = CBRateFinder.dollar
-      ExchangeRate.create(rate: cb_rate, date: Time.now.utc)
+      ExchangeRate.create(rate: cb_rate, date: Time.current)
     end
     @current_rate = ExchangeRate.last
     SetRateWorker.perform_async # check if official rate changed and start recurrence
@@ -26,7 +26,7 @@ class ExchangeRatesController < ApplicationController
     end
     # Set the worket to chech back after time expires and publish new rate
     # to open clients
-    seconds_from_now = ExchangeRate.last.date.to_i - Time.now.to_i
+    seconds_from_now = ExchangeRate.last.date.to_i - Time.current.to_i
     SetRateWorker.perform_in(seconds_from_now.seconds)
     Pusher.trigger('rate-updates', 'rate-updated', {
       latest_rate: @exchange_rate.rate

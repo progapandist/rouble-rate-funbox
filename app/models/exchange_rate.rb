@@ -3,7 +3,7 @@ class ExchangeRate < ApplicationRecord
   validate :date, :date_cannot_be_the_past, on: :update
 
   def date_cannot_be_the_past
-    if date < Time.now
+    if date < Time.current
       errors.add(:date, "can not be in the past")
     end
   end
