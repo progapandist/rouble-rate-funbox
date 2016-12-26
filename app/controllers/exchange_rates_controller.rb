@@ -31,6 +31,7 @@ class ExchangeRatesController < ApplicationController
     Pusher.trigger('rate-updates', 'rate-updated', {
       latest_rate: @exchange_rate.rate
     })
+    
   end
 
   private
