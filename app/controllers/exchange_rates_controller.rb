@@ -8,19 +8,26 @@ class ExchangeRatesController < ApplicationController
       ExchangeRate.create(rate: cb_rate, date: Time.now.utc)
     end
     @current_rate = ExchangeRate.last
-    SetRateWorker.perform_async # start recurrence
+    SetRateWorker.perform_async # check if official rate changed and start recurrence
   end
 
   def edit
-    @exchange_rate = ExchangeRate.order(:date).last
+    @exchange_rate = ExchangeRate.last
   end
 
   def update
     @exchange_rate = ExchangeRate.last
     @exchange_rate.update(exchange_rate_params)
+    if @exchange_rate.save
+      redirect_to action: 'index'
+    else
+      render :edit
+      return
+    end
+    # Set the worket to chech back after time expires and publish new rate
+    # to open clients
     seconds_from_now = ExchangeRate.last.date.to_i - Time.now.to_i
     SetRateWorker.perform_in(seconds_from_now.seconds)
-    redirect_to action: 'index'
     Pusher.trigger('rate-updates', 'rate-updated', {
       latest_rate: @exchange_rate.rate
     })
