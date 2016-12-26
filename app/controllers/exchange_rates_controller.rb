@@ -40,6 +40,7 @@ class ExchangeRatesController < ApplicationController
   end
 
   # workaround for Rails not regocnizing Time.zone.now -> 'MSK' as valid time zone
+  # I had to hard-code Moscow timezone for MVP
   def set_time_zone
     Time.use_zone('Europe/Moscow') { yield }
   end
