@@ -3,8 +3,8 @@ class ExchangeRatesController < ApplicationController
 
   def index
     last_rate = ExchangeRate.last
-    if last_rate.date < Time.current
-      cb_rate = CBRateFinder.dollar
+    cb_rate = CBRateFinder.dollar
+    if last_rate.date < Time.current && last_rate.rate != cb_rate
       ExchangeRate.create(rate: cb_rate, date: Time.current)
     end
     @current_rate = ExchangeRate.last
