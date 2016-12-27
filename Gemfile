@@ -23,8 +23,12 @@ gem 'vuejs-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'capybara', '~> 2.5.0'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'timecop'
 
   gem 'pry-byebug'
   gem 'pry-rails'
