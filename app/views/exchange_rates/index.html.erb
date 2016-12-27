@@ -1,7 +1,7 @@
 <div class="container">
   <div class="center-box">
-    <div v-cloak class="current_rate" id="rate_show">
-      1$ = {{ message }}&#8381;
+    <div v-cloak data-rate="<%= @current_rate.rate %>" class="current_rate" id="rate_show">
+      1$ = {{ rate }}&#8381;
     </div>
   </div>
 </div>
@@ -20,12 +20,12 @@ var channel = pusher.subscribe('rate-updates');
 var rate_show = new Vue({
   el: '#rate_show',
   data: {
-    message: '<%= @current_rate.rate %>'
+    rate: '<%= @current_rate.rate %>'
   }
 });
 
 channel.bind('rate-updated', function(data) {
-  rate_show.message = data.latest_rate;
+  rate_show.rate = data.latest_rate;
   console.log('rate updated to ' + data.latest_rate);
 });
 
