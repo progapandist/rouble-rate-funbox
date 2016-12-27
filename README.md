@@ -10,5 +10,7 @@ http://rouble-trouble.herokuapp.com/
 ## Things I used
 - Rais/ActiveRecord
 - Pusher (pub-sub)
-- Vue.js (front)
+- Vue.js
+- Bootstrap
+- Simple Form
 - Sidekiq (worker) + Sidetiq (recurrence)
