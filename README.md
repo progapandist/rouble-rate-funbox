@@ -1,1 +1,14 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+## See in action at Heroku
+http://rouble-trouble.herokuapp.com/
+
+## Launch on localhost  
+1. git clone
+2. cd rouble-rate-funbox
+3. rails db:create db:migrate db:seed
+4. foreman start -f Procfile.dev -p PORT_NUMBER
+
+## Things I used
+- Rais/ActiveRecord
+- Pusher (pub-sub)
+- Vue.js (front)
+- Sidekiq (worker) + Sidetiq (recurrence)
