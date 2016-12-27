@@ -19,7 +19,7 @@ describe "Integration tests" do
       select Time.current.strftime("%B"), from: "exchange_rate_date_2i"
       select "#{Time.current.day}", from: "exchange_rate_date_3i"
       select "#{Time.current.in_time_zone('Europe/Moscow').hour}", from: "exchange_rate_date_4i"
-      select "#{Time.current.strftime("%M").to_i + 1}", from: "exchange_rate_date_5i"
+      select (Time.current.strftime("%M").to_i + 1).to_s.rjust(2, '0'), from: "exchange_rate_date_5i"
       click_on "Set Forced Rate"
       visit root_path
       expect(page.find('#rate_show')[:'data-rate']).to eq("123.45")
