@@ -4,8 +4,8 @@ RSpec.describe ExchangeRatesController, type: :controller do
   describe "GET index" do
     let(:fresh_rate) { CBRateFinder.dollar }
 
-    it "uses freshly scraped rate if the last known is outdated" do
-      last_known = create(:exchange_rate, date: Time.current - 1.hour)
+    it "uses freshly scraped rate if the last record is outdated" do
+      _ = create(:exchange_rate, date: Time.current - 1.hour)
       get :index
       expect(assigns(:current_rate).rate).to eq(fresh_rate)
     end
