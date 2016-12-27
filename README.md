@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/progapandist/rouble-rate-funbox.svg?branch=master)](https://travis-ci.org/progapandist/rouble-rate-funbox
+[![Build Status](https://travis-ci.org/progapandist/rouble-rate-funbox.svg?branch=master)](https://travis-ci.org/progapandist/rouble-rate-funbox)
 
 ## See in action at Heroku
 http://rouble-trouble.herokuapp.com/
