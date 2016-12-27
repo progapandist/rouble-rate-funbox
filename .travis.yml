@@ -1,3 +1,6 @@
 language: ruby
 before_script:
+  - bundle exec sidekiq -C config/sidekiq.yml
   - psql -c 'create database "rouble-rate-funbox_test";' -U postgres
+services:
+  - redis-server
