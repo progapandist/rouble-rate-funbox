@@ -18,7 +18,7 @@ describe "Integration tests" do
       select "#{Time.current.year}", from: "exchange_rate_date_1i"
       select Time.current.strftime("%B"), from: "exchange_rate_date_2i"
       select "#{Time.current.day}", from: "exchange_rate_date_3i"
-      select "#{Time.current.in_time_zone('Europe/Moscow').hour}", from: "exchange_rate_date_4i"
+      select Time.current.in_time_zone('Europe/Moscow').hour.to_s.rjust(2, '0'), from: "exchange_rate_date_4i"
       select (Time.current + 1.minute).strftime("%M").to_i.to_s.rjust(2, '0'), from: "exchange_rate_date_5i"
       click_on "Set Forced Rate"
       visit root_path
