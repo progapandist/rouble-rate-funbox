@@ -16,3 +16,4 @@ http://rouble-trouble.herokuapp.com/
 - Vue.js
 - Bootstrap
 - Simple Form
+- RSpec / Capybara / Factory Girl 
